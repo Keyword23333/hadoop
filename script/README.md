@@ -4,3 +4,4 @@
 更新了创建文件夹<br />
 
 mapreduce代码<br />
+jar包输出的表名为InvertedIndexTable<br />
