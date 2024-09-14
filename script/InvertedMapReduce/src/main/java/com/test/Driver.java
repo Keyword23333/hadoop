@@ -23,14 +23,16 @@ public class Driver {
         job.setJarByClass(Driver.class);
         job.setMapperClass(InvertedMapper.class);
         job.setCombinerClass(InvertedCombiner.class);
-        job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(Text.class);
+        job.setReducerClass(InvertedReducer.class);
+        job.setMapOutputKeyClass(Text.class);
+        job.setMapOutputValueClass(Text.class);
 
         job.getConfiguration().setStrings("mapreduce.reduce.shuffle.memory.limit.percent", "0.15");
 
         FileInputFormat.setInputPaths(job,new Path(args[0]));
         //记得更改表名
-        TableMapReduceUtil.initTableReducerJob("tabelname",InvertedReducer.class,job);
-        System.out.println("Hello world!");
+        TableMapReduceUtil.initTableReducerJob("InvertedIndexTable",InvertedReducer.class,job);
+        boolean res = job.waitForCompletion(true);
+        System.exit(res?0:1);
     }
 }
