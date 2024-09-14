@@ -7,8 +7,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+
 
 public class InvertedMapper extends Mapper<LongWritable, Text, Text, Text>
 {
