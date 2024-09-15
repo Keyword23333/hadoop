@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2024-2025小学期大数据系统开发实践报告.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<div style="text-align: center;">
+<br/>
+<br/>
+<br/>
+<br/>
+<h1 id="%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A">大数据系统开发实践实验报告</h1>
+<p><img src="image.png" alt="alt text"></p>
+<h3 id="%E9%A2%98-%E7%9B%AE-%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5">题　　目： 大数据系统开发实践</h3>
+<h3 id="%E5%AD%A6-%E9%99%A2-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E9%99%A2">学　　院： 计算机学院</h3>
+<h3 id="%E4%B8%93%E4%B8%9A%E5%90%8D%E7%A7%B0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF">专业名称： 计算机科学与技术</h3>
+<h3 id="%E5%B0%8F%E7%BB%84%E6%88%90%E5%91%98">小组成员：</h3>
+<p>成员1<br>
+成员2<br>
+成员3</p>
+<h3 id="%E4%BB%BB%E8%AF%BE%E6%95%99%E5%B8%88-%E9%83%AD%E8%B4%B5%E9%94%81">任课教师： 郭贵锁</h3>
+<h3 id="%E6%97%A5-%E6%9C%9F-2024%E5%B9%B49%E6%9C%8814%E6%97%A5">日　　期： 2024年9月14日</h3>
+</div>
+<div style="page-break-after: always;"></div>
+<h2 id="1%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88">1.搜索引擎的技术方案</h2>
+<h3 id="11%E5%8A%9F%E8%83%BD%E6%8F%8F%E8%BF%B0">1.1功能描述</h3>
+<p>wkw负责写</p>
+<h3 id="12%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B">1.2技术选型</h3>
+<p>随着搜索引擎需要处理超高并发和超大数据量，国内多数搜索引擎采用集中式架构，导致服务器性能要求高、可扩展性差、宽带浪费和重复性工作等问题，难以应对日益增长的数据规模。而基于分布式架构的搜索引擎，如Hadoop，能够提供高性能、低成本的解决方案，因此在搜索引擎中引入Hadoop是必要的。<br></p>
+<h4 id="hadoop-%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B">Hadoop 生态系统简介</h4>
+<p>Hadoop是Apache基金会开发的开源分布式系统基础架构，具有高扩展性和容错性。它的核心组件包括：<br></p>
+<ul>
+<li><strong>HDFS（Hadoop Distributed File System）</strong>：分布式存储系统，采用Master/Slave结构，负责将文件拆分成多个数据块存储在不同节点上。<br></li>
+<li><strong>YARN（Yet Another Resource Negotiator）</strong>：集群资源管理和任务调度的核心框架。<br></li>
+<li><strong>MapReduce</strong>：Hadoop的数据处理引擎，支持大数据的并行计算。<br></li>
+<li><strong>HBase</strong>：面向列的分布式数据库，适用于大规模数据的随机读写。<br></li>
+<li><strong>Hive</strong>：基于Hadoop的数据仓库工具，支持SQL查询。<br></li>
+<li><strong>Spark</strong>：通用的大数据快速计算引擎，适合低延迟和迭代处理需求。<br></li>
+<li><strong>ZooKeeper</strong>：分布式协调服务，负责系统的配置管理、同步和故障恢复。<br>
+Hadoop的核心是HDFS提供存储支持，MapReduce负责数据计算。基于这些特点，Hadoop可以很好地满足分布式搜索引擎的需求。<br></li>
+</ul>
+<h4 id="121-hadoop-%E7%9A%84%E4%BC%98%E5%8A%BF">1.2.1 Hadoop 的优势</h4>
+<ol>
+<li><strong>高效的数据处理</strong>：通过MapReduce并行处理大量数据，能显著减少数据处理时间。例如，18GB数据在集群环境下比单机节省了4.8倍的时间。随着数据规模的增加，Hadoop的效率优势愈发明显。<br></li>
+<li><strong>开源与低成本</strong>：Hadoop是开源平台，使用成本较低，团队可以将更多资金投入到应用开发中。开源带来了快速的技术更新和社区支持。<br></li>
+<li><strong>高扩展性</strong>：Hadoop支持集群扩展，能动态添加计算节点，以满足不断增加的数据处理需求，且不会影响集群的性能。<br></li>
+<li><strong>安全性和容错性</strong>：HDFS通过数据块的副本机制确保数据安全，系统可以从节点故障中快速恢复。Hadoop自动分配失败任务，确保任务的连续性和数据的完整性。<br></li>
+<li><strong>适合中小型团队</strong>：Hadoop的架构能够减少对硬件的依赖，使中小型开发团队可以在有限的资源下实现高效的数据分析和搜索服务。<br></li>
+</ol>
+<h4 id="122-hadoop-%E7%9A%84%E5%8A%A3%E5%8A%BF">1.2.2 Hadoop 的劣势</h4>
+<p>尽管Hadoop有许多优势，但在某些场景中仍然存在一些局限性，特别是在Hadoop 3.x版本中体现得更为明显：<br></p>
+<ol>
+<li><strong>不适用于低延迟的数据访问</strong>：Hadoop主要适合批处理任务，不适合需要快速响应的实时应用场景。<br></li>
+<li><strong>处理大量小文件效率低</strong>：Hadoop的文件块默认大小为128MB或256MB，处理大量比块大小小得多的文件时（如小于1MB），效率较低。这些小文件会使NameNode超载，导致性能瓶颈。<br></li>
+<li><strong>不支持多用户同时写入和修改文件</strong>：HDFS对文件的修改限制较多，无法灵活地进行多用户并发写入和修改操作。<br></li>
+<li><strong>安全性问题</strong>：由于Hadoop使用Java编写，而Java作为一种广泛使用的语言，容易成为网络攻击的目标，Hadoop系统的安全性容易受到挑战。<br></li>
+<li><strong>处理开销大</strong>：Hadoop依赖磁盘I/O，数据从磁盘读取和写入的过程耗时较长，特别是在处理PB级数据时，读写操作变得非常昂贵。Hadoop无法实现内存中计算，导致整体处理开销大。<br></li>
+<li><strong>仅支持批处理</strong>：Hadoop的核心MapReduce引擎设计用于批处理任务，不适合流处理或需要低延迟的实时应用。<br></li>
+<li><strong>迭代处理效率低</strong>：Hadoop的MapReduce模型不适合迭代处理，特别是在机器学习或需要多阶段处理的数据流中。每个阶段的输出必须作为下一个阶段的输入，缺乏灵活性。<br></li>
+</ol>
+<h4 id="123-%E7%BB%93%E8%AE%BA">1.2.3 结论</h4>
+<p>Hadoop凭借其高效、低成本、易扩展的特点，适合作为分布式搜索引擎的基础架构。然而，对于实时性要求高或涉及大量小文件的场景，Hadoop的效率会大打折扣。在这种情况下，可以考虑将Hadoop与其他大数据工具（如Spark）结合使用，以弥补其不足，提高搜索引擎的性能和灵活性。<br></p>
+<h3 id="13-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0">1.3 功能实现</h3>
+<p>yjx负责写</p>
+<h3 id="14-%E5%B7%A5%E4%BD%9C%E8%AE%A1%E5%88%92">1.4 工作计划</h3>
+<p>dyh负责</p>
+<h3 id="15-%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84">1.5 组织结构</h3>
+<p><strong>阶段一：设计Hadoop分布式计算引擎</strong><br>
+<strong>目标</strong>：建立一个基于Hadoop的分布式计算引擎，支持海量数据的高效处理。<br></p>
+<p><strong>任务</strong>：<br>
+研究Hadoop框架的基本原理和组件（如HDFS、MapReduce、YARN等）。<br>
+设计适用于搜索引擎的数据处理架构，特别是数据抓取和预处理的管道。<br>
+实现Hadoop集群的部署与配置，确保高可用性和扩展性。<br>
+优化Hadoop作业的执行，减少数据处理的延迟和资源消耗。<br>
+重点：选择合适的调度算法和数据分区策略，以优化数据抓取和处理的性能。<br></p>
+<p><strong>阶段二：嵌入倒排索引技术（全文检索）</strong><br>
+<strong>目标</strong>：实现基于倒排索引的全文检索功能，以支持高效的搜索查询。<br></p>
+<p><strong>任务</strong>：<br>
+理解倒排索引的结构和构建过程，包括词项、文档频率、倒排列表等。<br>
+设计倒排索引的生成算法，确保索引构建的效率和准确性。<br>
+集成全文检索库（如Lucene），或者自定义开发全文检索模块。<br>
+实现索引更新策略（增量更新、全量重建等）以适应动态数据变化。<br>
+重点：优化索引存储结构和查询算法，提升查询的响应速度和准确性。<br></p>
+<p><strong>阶段三：实现中文分词技术</strong><br>
+目标：设计并实现中文分词算法，提高中文搜索结果的准确性。<br></p>
+<p><strong>任务</strong>：<br>
+调研现有的中文分词算法（如正向最大匹配、双向最大匹配、统计模型等）并选型。<br>
+实现分词算法并进行性能优化，支持自定义词典和词性标注。<br>
+解决分词中的歧义问题，提高分词的准确率。<br>
+集成分词模块与倒排索引构建过程，以支持中文文本的有效索引和检索。<br>
+重点：平衡分词的准确性和性能，处理好词库维护和动态更新的问题。<br></p>
+<p><strong>阶段四：设计分布式数据库系统</strong><br>
+<strong>目标</strong>：设计一个高效的分布式数据库系统，用于存储和管理海量数据。<br></p>
+<p><strong>任务</strong>：<br>
+分析业务需求，确定需要存储的数据类型（文档元数据、用户行为数据等）。<br>
+选型分布式数据库系统（如HBase、Cassandra、Elasticsearch等），并设计数据模型。<br>
+设计数据库的分区和副本策略，以提高数据的读写性能和可靠性。<br>
+优化数据库的索引策略，确保高效的数据查询和检索性能。<br>
+重点：设计合理的数据分片和副本管理策略，平衡数据一致性和可用性。<br>
+<br>
+<strong>阶段五：开发Web客户端</strong><br>
+<strong>目标</strong>：开发一个友好的Web前端，提供用户高效的搜索体验。<br>
+<br>
+<strong>任务</strong>：<br>
+设计用户界面（UI）和用户体验（UX），确保简洁易用的操作流程。<br>
+实现前端功能模块（如搜索框、搜索结果展示、过滤器等）。<br>
+提供智能提示和自动补全功能，以提高用户输入效率。<br>
+集成前端与后端API接口，确保数据的实时性和准确性。<br>
+重点：关注用户体验，确保前端页面的响应速度和交互性。<br>
+<br>
+<strong>阶段六：测试和功能完善</strong><br>
+<strong>目标</strong>：全面测试系统功能，修复缺陷并优化性能。<br>
+<br>
+<strong>任务</strong>：<br>
+制定测试计划，进行单元测试、集成测试、性能测试和用户测试。<br>
+收集测试反馈，修复Bug和优化功能，确保系统的稳定性和可用性。<br>
+完善日志和监控系统，确保故障的快速定位和恢复。<br>
+进行负载测试和安全测试，优化系统的扩展性和安全性。<br>
+重点：全面测试和持续优化，确保系统在高并发和大数据量下的稳定运行。<br></p>
+<h3 id="16-%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F%E4%BF%9D%E8%AF%81">1.6 软件质量保证</h3>
+<p>zjr负责</p>
+<h2 id="2%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95%E7%9A%84%E5%AE%9E%E7%8E%B0">2.倒排索引的实现</h2>
+<h3 id="21-%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82">2.1 实验要求</h3>
+<p>运用MapReduce算法计算,构建一个倒排索引, 将倒排索引存储在HBase中,数据为老师提供的sentence.txt文件。</p>
+<h3 id="22-%E5%AE%9E%E9%AA%8C%E8%BF%9B%E5%BA%A6">2.2 实验进度</h3>
+<ul>
+<li>9.6-9.8 完成集群初步配置<br></li>
+<li>9.9-9.11 伪分布式和单机完全分布式集群启动成功<br></li>
+<li>9.12 完成倒排索引的代码编写<br></li>
+<li>9.13 完成三机完全分布式集群启动成功，单机完全分布式倒排运行成功<br></li>
+<li>9.14 三机完全分布式倒排运行成功</li>
+</ul>
+<h3 id="23-%E5%B0%8F%E7%BB%84%E5%88%86%E5%B7%A5">2.3 小组分工</h3>
+<p>每个人写自己的</p>
+<h3 id="24-%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87">2.4 数据准备</h3>
+<p>数据来自i北理群，解压sentence压缩包后其中sentence.txt为1.392316kb。通过由于文件过大无法使用记事本打开，通过python代码显示文本内容，得到一共有9397023行，每行有一个行号（0-9397022）和一个英文长句，相邻单词用空格分离。数据中仅包含数字与英文字母，无特殊符号。<br>
+<strong>数据处理</strong><br>
+运行wordcut.py将同目录下的sentence.txt按照每一万行句子进行划分，并将划分好的940个文件命名为files0~files939，并存入files文件夹中。<br>
+wordcut.py代码如下<br></p>
+<pre class="hljs"><code><div>import os
+import math
+# 指定输入文件和输出目录
+input_file_path = r&quot;sentences.txt&quot;  # 你的输入txt文件路径
+output_directory = r'files'  # 指定的输出目录路径
+# 打开原始txt文件,一共有9397023条句子
+with open(input_file_path, 'r', encoding='utf-8') as input_file:
+    lines = input_file.readlines()
+# 计算总行数和文件数
+total_lines = len(lines)
+num_files = (total_lines + 9999) // 10000
+# 分割文件
+for i in range(num_files):
+    start = i * 10000
+    end = min((i + 1) * 10000, total_lines)
+    output_filename = os.path.join(output_directory, f'file{i}.txt')
+
+    # 写入分割后的内容到新文件
+    with open(output_filename, 'w', encoding='utf-8') as output_file:
+        output_file.writelines(lines[start:end])
+</div></code></pre>
+<h3 id="25-%E7%8E%AF%E5%A2%83%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE">2.5 环境的安装与配置</h3>
+<p>wkw负责写完全分布，yjx负责写伪分布</p>
+<h4 id="251-%E4%BC%AA%E5%88%86%E5%B8%83">2.5.1 伪分布</h4>
+<h4 id="252%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83">2.5.2完全分布</h4>
+<ol>
+<li>节点分配设计</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>节点编号</th>
+<th>节点类型</th>
+<th>IP地址</th>
+<th>角色/职责</th>
+<th>CPU核数</th>
+<th>内存(GB)</th>
+<th>磁盘空间(GB)</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>NameNode</td>
+<td>192.168.3.81</td>
+<td>管理HDFS元数据，负责文件系统的命名空间和控制</td>
+<td>2</td>
+<td>2</td>
+<td>40</td>
+<td>主要负责元数据存储与查询</td>
+</tr>
+<tr>
+<td>2</td>
+<td>SecondaryNameNode</td>
+<td>192.168.3.83</td>
+<td>协助NameNode备份元数据、检查点</td>
+<td>8</td>
+<td>2</td>
+<td>40</td>
+<td>作为NameNode的辅助节点</td>
+</tr>
+<tr>
+<td>3</td>
+<td>DataNode</td>
+<td>192.168.3.81</td>
+<td>存储实际数据块，提供数据读写服务</td>
+<td>2</td>
+<td>2</td>
+<td>40</td>
+<td>每个DataNode存储HDFS数据块</td>
+</tr>
+<tr>
+<td>4</td>
+<td>DataNode</td>
+<td>192.168.3.82</td>
+<td>存储实际数据块，提供数据读写服务</td>
+<td>2</td>
+<td>2</td>
+<td>40</td>
+<td>多个DataNode提供冗余和高可用性</td>
+</tr>
+<tr>
+<td>5</td>
+<td>DataNode</td>
+<td>192.168.3.83</td>
+<td>存储实际数据块，提供数据读写服务</td>
+<td>8</td>
+<td>2</td>
+<td>40</td>
+<td>提供负载均衡和分布式存储</td>
+</tr>
+<tr>
+<td>6</td>
+<td>ResourceManager</td>
+<td>192.168.3.81</td>
+<td>管理集群资源，调度计算任务</td>
+<td>2</td>
+<td>2</td>
+<td>40</td>
+<td>负责资源调度</td>
+</tr>
+<tr>
+<td>7</td>
+<td>NodeManager</td>
+<td>192.168.3.82</td>
+<td>负责任务执行及资源管理</td>
+<td>2</td>
+<td>2</td>
+<td>40</td>
+<td>管理YARN应用程序的容器</td>
+</tr>
+<tr>
+<td>8</td>
+<td>NodeManager</td>
+<td>192.168.3.83</td>
+<td>负责任务执行及资源管理</td>
+<td>8</td>
+<td>2</td>
+<td>40</td>
+<td>提供计算能力的分布式资源节点</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Zookeeper</td>
+<td>192.168.3.83</td>
+<td>提供分布式协调服务，管理集群节点状态</td>
+<td>8</td>
+<td>2</td>
+<td>40</td>
+<td>负责NameNode的高可用性和选举</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>网络配置流程</li>
+</ol>
+<ul>
+<li><strong>设置IP地址</strong><br>
+需要修改主机VM8，虚拟网络编辑器和虚拟机网卡。<br>首先是VMnet8的设置：<br><img src="image-1.png" alt="alt text"><br>
+将IP，网关和DNS的第三位调整一致。<br>
+然后设置虚拟网络编辑器：<br>
+<img src="image-2.png" alt="alt text"><br>
+将子网的网段前三位改为与VMnet8的IP一致。<br>
+然后配置虚拟机网卡，在命令终端输入<br><pre class="hljs"><code><div>vim /etc/sysconfig/network-scripts/ifcfg-ens33
+</div></code></pre>
+进入页面修改虚拟机的网卡如下图所示：<br>
+<img src="image-3.png" alt="alt text"><br>
+至此，所有IP配置完毕</li>
+<li><strong>使用XShell连接</strong><br>
+如果可以使用XShell连接，说明本地的网络与虚拟机服务器之间的网络是畅通的，没有防火墙或其他网络障碍阻止连接。所以这步需要先关闭防火墙，确认访问端口开启，然后再用XShell连接，连接成功后ping外网和本机IP，保证网络畅通。<br>
+首先关闭防火墙，并检查防火墙状态:<pre class="hljs"><code><div>sudo systemctl stop firewalld
+sudo systemctl disable firewalld
+sudo systemctl status firewalld
+</div></code></pre>
+出现以下状态即为关闭成功：<img src="image-4.png" alt="alt text"><br>
+然后检查开放的端口：<pre class="hljs"><code><div>sudo ss -tuln
+</div></code></pre>
+检查端口是否开放<br>
+<img src="image-5.png" alt="alt text">
+可以看到22号端口是开放的。<br>
+然后我们使用XShell对其进行连接：<br>
+<img src="image-6.png" alt="alt text">图示即为连接成功。<br>
+然后测试ping网络：<br>
+<img src="image-7.png" alt="alt text"><br>
+如图即为成功ping通。至此已经完成XShell的连接.<br></li>
+</ul>
+<ol start="3">
+<li>软件安装和虚拟机复制</li>
+</ol>
+<ul>
+<li><strong>jdk安装</strong></li>
+<li><strong>hadoop安装</strong></li>
+<li><strong>zooKeeper安装</strong></li>
+<li><strong>hbase安装</strong></li>
+<li><strong>虚拟机复制</strong>
+将样本机复制两次样本，一共有三台虚拟机，命名为hadoop081，hadoop082，hadoop083：<br>
+<img src="image-8.png" alt="alt text"><br>
+将两台主机的网卡分别改为对应的IP，再修改其主机名。修改IP之前已经展示，接下来就展示主机名修改。命令输入：<pre class="hljs"><code><div>vim /etc/hostname
+</div></code></pre>
+<img src="image-9.png" alt="alt text"><br>
+如上图为hadoop082主机名的修改。</li>
+</ul>
+<ol start="4">
+<li>节点分配文件</li>
+</ol>
+<ul>
+<li>
+<p><strong>core-site.xml</strong></p>
+<pre class="hljs"><code><div>&lt;configuration&gt;
+    &lt;property&gt;
+            &lt;name&gt;fs.defaultFS&lt;/name&gt;
+            &lt;value&gt;hdfs://hadoop081:9000&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+            &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;
+            &lt;value&gt;/var/big_data&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+</div></code></pre>
+</li>
+<li>
+<p><strong>hdfs-site.xml</strong></p>
+<pre class="hljs"><code><div>  &lt;configuration&gt;
+      &lt;property&gt;
+              &lt;name&gt;dfs.replication&lt;/name&gt;
+              &lt;value&gt;2&lt;/value&gt;
+      &lt;/property&gt;
+      &lt;property&gt;
+              &lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;
+              &lt;value&gt;hdfs://hadoop083:9868&lt;/value&gt;
+      &lt;/property&gt;
+  &lt;/configuration&gt;
+
+</div></code></pre>
+</li>
+<li>
+<p><strong>yarn-site.xml</strong></p>
+<pre class="hljs"><code><div>&lt;configuration&gt;
+    &lt;property&gt;
+            &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
+            &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+            &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;
+            &lt;value&gt;hadoop081&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+            &lt;name&gt;yarn.scheduler.minimum-allocation-mb&lt;/name&gt;
+            &lt;value&gt;256&lt;/value&gt;
+     &lt;/property&gt;
+     &lt;property&gt;
+            &lt;name&gt;yarn.scheduler.maximum-allocation-mb&lt;/name&gt;
+            &lt;value&gt;1540&lt;/value&gt;
+     &lt;/property&gt;
+     &lt;property&gt;
+            &lt;name&gt;yarn.nodemanager.resource.memory-mb&lt;/name&gt;
+            &lt;value&gt;1540&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+             &lt;name&gt;yarn.nodemanager.env-whitelist&lt;/name&gt;&lt;value&gt;JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+
+</div></code></pre>
+</li>
+<li>
+<p><strong>mapred-site.xml</strong></p>
+<pre class="hljs"><code><div>&lt;configuration&gt;
+      &lt;property&gt;
+              &lt;name&gt;mapreduce.framework.name&lt;/name&gt;
+              &lt;value&gt;yarn&lt;/value&gt;
+      &lt;/property&gt;
+&lt;/configuration&gt;
+'''
+</div></code></pre>
+</li>
+<li>
+<p><strong>hbase-site.xml</strong></p>
+<pre class="hljs"><code><div>&lt;configuration&gt;
+    &lt;property&gt;
+        &lt;name&gt;hbase.cluster.distributed&lt;/name&gt;
+        &lt;value&gt;true&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;hbase.tmp.dir&lt;/name&gt;
+        &lt;value&gt;/opt/module/hbase-2.5.4/tmp&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;hbase.unsafe.stream.capability.enforce&lt;/name&gt;
+        &lt;value&gt;false&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;hbase.rootdir&lt;/name&gt;
+        &lt;value&gt;hdfs://hadoop081:9000/hbase&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;hbase.zookeeper.quorum&lt;/name&gt;
+        &lt;value&gt;hadoop081,hadoop082,hadoop083&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt;
+        &lt;value&gt;/opt/module/zookeeper-3.8.2/zkData&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;hbase.master.info.port&lt;/name&gt;
+        &lt;value&gt;16010&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+
+</div></code></pre>
+</li>
+<li>
+<p><strong>zoo.cfg</strong></p>
+<pre class="hljs"><code><div># The number of milliseconds of each tick
+tickTime=2000
+# The number of ticks that the initial 
+# synchronization phase can take
+initLimit=10
+# The number of ticks that can pass between 
+# sending a request and getting an acknowledgement
+syncLimit=5
+# the directory where the snapshot is stored.
+# do not use /tmp for storage, /tmp here is just 
+# example sakes.
+dataDir=/opt/module/zookeeper-3.8.2/zkData
+# the port at which the clients will connect
+clientPort=2181
+# the maximum number of client connections.
+# increase this if you need to handle more clients
+#maxClientCnxns=60
+#
+# Be sure to read the maintenance section of the 
+# administrator guide before turning on autopurge.
+#
+# https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_maintenance
+#
+# The number of snapshots to retain in dataDir
+#autopurge.snapRetainCount=3
+# Purge task interval in hours
+# Set to &quot;0&quot; to disable auto purge feature
+#autopurge.purgeInterval=1
+
+## Metrics Providers
+#
+# https://prometheus.io Metrics Exporter
+#metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider
+#metricsProvider.httpHost=0.0.0.0
+#metricsProvider.httpPort=7000
+#metricsProvider.exportJvmInfo=true
+server.1=hadoop081:2888:3888
+server.2=hadoop082:2888:3888
+server.3=hadoop083:2888:3888
+</div></code></pre>
+</li>
+</ul>
+<ol start="5">
+<li>
+<p>单机完全分布集群启动
+按照zookeeper，hdfs，yarn，hbase的顺序开启节点。完全启动后三台虚拟机的节点为：<br></p>
+<ul>
+<li>hadoop081：<br>
+<img src="image-10.png" alt="alt text"><br></li>
+<li>hadoop082<br>
+<img src="image-11.png" alt="alt text"><br></li>
+<li>hadoop083:<br>
+<img src="image-12.png" alt="alt text"><br>
+最终在web访问集群：<br>
+<img src="image-13.png" alt="alt text">
+<img src="5ed031be52afa1874487c466e7d1ece.jpg" alt="alt text"></li>
+</ul>
+</li>
+<li>
+<p>三机完全分布集群网络配置</p>
+</li>
+<li>
+<p>三机完全分布集群启动</p>
+</li>
+</ol>
+<h3 id="26-%E7%AE%97%E6%B3%95%E5%8F%8A%E5%AE%9E%E7%8E%B0">2.6 算法及实现</h3>
+<p>zjr负责写</p>
+<h3 id="27-%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%8E%E5%88%86%E6%9E%90">2.7 运行结果与分析</h3>
+<ul>
+<li><strong>运行结果</strong><br>
+首先使用java程序里面的UpLoad类将本地处理好的数据集上传到集群hdfs的“input/data/”目录下：<br>
+<img src="19fb02e2fd5c32647e05fcf285a29f2.jpg" alt="alt text"><br>
+如图表示上传成功。<br>
+使用hbase shell命令新建一个名为“InvertedIndexTable”的表格：<pre class="hljs"><code><div>create 'InvertedIndexTable'
+</div></code></pre>
+将jar包上传至虚拟机中。使用如下命令运行jar包：<pre class="hljs"><code><div>hadoop jar test.jar /input/data
+</div></code></pre>
+如图所示即为运行成功：<br>
+<img src="c8a37b934cff62bdc49c501b519c649.png" alt="alt text"><br>
+最后在hbase shell里面查看表格：<br>
+<img src="image-14.png" alt="alt text">
+输出无误，表示运行完成</li>
+<li><strong>运行时间对比</strong>
+在完成伪分布式计算，单机分布式计算和三机分布式计算之后，我们对其运行时长进行对比，得以突出多机完全分布式的优越性。</li>
+</ul>
+<h3 id="28-%E6%80%BB%E7%BB%93%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A">2.8 总结（心得、体会）</h3>
+<p>每个人写一点</p>
+
+</body>
+</html>
