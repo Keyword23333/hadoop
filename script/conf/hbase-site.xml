@@ -44,10 +44,6 @@
     <value>true</value>
   </property>
   <property>
-    <name>hbase.tmp.dir</name>
-    <value>/opt/module/hbase-2.5.4/tmp</value>
-  </property>
-  <property>
     <name>hbase.unsafe.stream.capability.enforce</name>
     <value>false</value>
   </property>
@@ -67,6 +63,11 @@
     <name>hbase.master.info.port</name>
     <value>16010</value>
   </property>
+
+<property>
+  <name>hbase.wal.provider</name>
+  <value>filesystem</value>
+</property>
 
 
 </configuration>
